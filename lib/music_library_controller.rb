@@ -96,7 +96,7 @@ def play_song
     # self.list_songs
     songs = Song.all
     # songs.sort {|a,b| a.name <=> b.name}
-
+binding.pry
  
     if (1..songs.length).include?(input)
       song = Song.all.sort{ |a, b| a.name <=> b.name }[input +2]
