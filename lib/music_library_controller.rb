@@ -94,7 +94,7 @@ def play_song
     input = gets.chomp.to_i
 
     # self.list_songs
-    songs = Song.all.uniq!
+    songs = Song.all.uniq
     # songs.sort {|a,b| a.name <=> b.name}
  
  
