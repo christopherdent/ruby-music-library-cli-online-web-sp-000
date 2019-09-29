@@ -99,7 +99,7 @@ def play_song
  
  
     if (1..songs.length).include?(input)
-      song = Song.all.sort{ |a, b| a.name <=> b.name }[input +2]
+      song = Song.all.sort.uniq{ |a, b| a.name <=> b.name }[input +2]
     end
     # binding.pry
 
