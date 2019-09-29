@@ -1,60 +1,44 @@
-require 'pry'
-require_relative '../lib/concerns/findable.rb'
-
-
-class Artist 
+class Artist
   extend Concerns::Findable
-  attr_accessor :name
-  attr_reader :songs 
-  
+  attr_accessor :name, :songs
+
   @@all = []
- 
+
   def initialize(name)
-    @name = name 
+    @name = name
+    @@all << self
     @songs = []
-    save
-    
-    
-  end 
-  
-  def self.all 
+
+  end
+
+  def self.all
     @@all 
-  end 
-  
+  end
+
   def self.destroy_all
-    @@all = []
-  end 
-  
+    self.all.clear
+  end
+
   def save
-    @@all << self 
-  end 
-  
+    @@all << self
+  end
+
   def self.create(name)
-   self.new(name)
-  end 
-  
+     Artist.new(name)
+  end
 
-  
-  
   def add_song(song)
-    if song.artist == nil 
-      son.artist = self 
-    end 
-    if !@songs.include?(song)
-      @song << song 
-    end 
-  end 
-  
-  
-  def genres
-    @g_array = [] 
-    
-    self.songs.collect do |song| 
-     @g_array << song.genre  
-    end   
-      @g_array.uniq
-  end 
+     self.songs << song unless songs.include?(song)
+     song.artist = self if song.artist.nil?
+  end
 
-  
-  
-end 
+  def genres
+    genres = self.songs.collect do |song|
+      song.genre
+    end
+    genres.uniq
+  end
+
+
+
+end
